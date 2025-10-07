@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Course Syllabus</title>
+    
+    <style>
+        /* General Page & Syllabus Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 25px 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: #003366;
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .course-desc {
+            text-align: center;
+            margin: 15px auto 30px;
+            font-size: 1.1em;
+            color: #555;
+            max-width: 700px;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.8em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+            font-weight: 500;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tbody tr:hover {
+            background-color: #e7f3ff;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        th:nth-child(1), td:nth-child(1) { width: 30%; }
+        th:nth-child(2), td:nth-child(2) { width: 45%; }
+        th:nth-child(3), td:nth-child(3) { width: 25%; }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        li {
+             margin-bottom: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px 15px;
+            }
+            header h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            table { border: 0; }
+            table thead { display: none; }
+            table tr {
+                display: block;
+                margin-bottom: 25px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            tbody tr:nth-child(even) { background-color: #fff; }
+            tbody tr:hover { background-color: #f9f9f9; }
+            table td {
+                display: block;
+                padding: 10px 15px 10px 38%;
+                position: relative;
+                border-bottom: 1px dashed #eee;
+                text-align: left;
+                width: 100% !important;
+            }
+            table td:last-child { border-bottom: none; }
+            table td:first-child {
+                background-color: #e9ecef;
+                color: #0056b3;
+                font-weight: bold;
+                font-size: 1.2em;
+                padding: 12px 15px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+            table td:first-child a { color: #0056b3 !important; }
+            table td:first-child::before { display: none; }
+            table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(38% - 30px);
+                font-weight: bold;
+                color: #333;
+                text-align: left;
+                white-space: normal;
+                font-size: 0.95em;
+            }
+            table td ul { padding-left: 15px; margin: 5px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <header>
+           <h1>Software Engineering Course Syllabus</h1>
+       </header>
+
+        <main>
+            <p class="course-desc">
+                This document outlines the core topics covered across the foundational chapters of Software Engineering, from initial concepts to agile development and requirements engineering.
+            </p>
+            
+            <h2>Course Modules</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                       <th>Main Ideas & Topics</th>
+                       <th>Methodologies & Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chapter 1: Introduction to Software Engineering</strong></td>
+                        <td data-label="Main Ideas & Topics">
+                            <ul>
+                                <li>Generic vs. Customized software products.</li>
+                                <li>The importance of professional software engineering.</li>
+                                <li>Essential attributes of good software: Maintainability, Dependability, Efficiency, and Acceptability.</li>
+                                <li>Fundamental activities: Specification, Development, Validation, and Evolution.</li>
+                                <li>Diversity in software applications and key challenges like security and heterogeneity.</li>
+                                <li>Professional and ethical responsibilities.</li>
+                            </ul>
+                        </td>
+                        <td data-label="Methodologies & Tools">
+                            <ul>
+                                <li>Web Services</li>
+                                <li>Cloud Computing</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chapter 2: Software Processes</strong></td>
+                        <td data-label="Main Ideas & Topics">
+                            <ul>
+                                <li>Abstract representations of software process models.</li>
+                                <li>Plan-driven vs. Agile approaches.</li>
+                                <li><strong>The Waterfall Model:</strong> Sequential phases and limitations.</li>
+                                <li><strong>Incremental Development:</strong> Interleaved activities, benefits, and challenges.</li>
+                                <li><strong>Reuse-Oriented Engineering:</strong> Assembling systems from existing components.</li>
+                                <li>Coping with changing requirements through prototyping and incremental delivery.</li>
+                            </ul>
+                        </td>
+                        <td data-label="Methodologies & Tools">
+                            <ul>
+                                <li>Waterfall Model</li>
+                                <li>Spiral Model</li>
+                                <li>Rational Unified Process (RUP)</li>
+                                <li>UML</li>
+                                <li>.NET / J2EE Frameworks</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chapter 3: Agile Software Development</strong></td>
+                        <td data-label="Main Ideas & Topics">
+                            <ul>
+                                <li>Core values from the Agile Manifesto.</li>
+                                <li>Principles: Customer involvement, incremental delivery, embracing change, and maintaining simplicity.</li>
+                                <li><strong>Extreme Programming (XP):</strong> An influential agile method.</li>
+                                <li>Key XP practices: User stories, pair programming, test-first development, refactoring, and continuous integration.</li>
+                                <li>Challenges in scaling agile methods for large, complex systems.</li>
+                            </ul>
+                        </td>
+                        <td data-label="Methodologies & Tools">
+                            <ul>
+                                <li>Extreme Programming (XP)</li>
+                                <li>Scrum (mentioned as part of Agile Project Management)</li>
+                                <li>Automated Test Frameworks (e.g., JUnit)</li>
+                                <li>IDEs & GUI Toolsets</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chapter 4: Requirements Engineering</strong></td>
+                        <td data-label="Main Ideas & Topics">
+                            <ul>
+                                <li>The process of establishing system services and constraints.</li>
+                                <li>User vs. System requirements.</li>
+                                <li><strong>Functional Requirements:</strong> What the system should do.</li>
+                                <li><strong>Non-functional Requirements:</strong> Constraints on the system (e.g., performance, security).</li>
+                                <li>The Software Requirements Document (SRD).</li>
+                                <li>Core processes: Elicitation, Analysis, Validation, and Management.</li>
+                                <li>Elicitation techniques like interviews, scenarios, and use cases.</li>
+                            </ul>
+                        </td>
+                        <td data-label="Methodologies & Tools">
+                            <ul>
+                                <li>UML Use Case Diagrams</li>
+                                <li>UML Sequence Diagrams</li>
+                                <li>Requirements Management Systems</li>
+                                <li>Ethnography</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
+        <footer>
+            <p>Syllabus generated based on provided course materials.</p>
+        </footer>
+    </div>
+</body>
+</html>
