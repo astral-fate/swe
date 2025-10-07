@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SE - Chapter 4: Requirements Engineering</title>
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+        color: #333;
+    }
+    .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3 { color: #0056b3; }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 15px;
+    }
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 10px;
+    }
+    h3 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+        color: #007bff;
+    }
+    
+    /* Main Tabs Styles */
+    .main-tabs {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #0056b3;
+    }
+    .main-tabs .tab-button {
+        padding: 12px 20px;
+        border: none;
+        background: none;
+        color: #0056b3;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px 5px 0 0;
+        transition: background-color 0.3s ease;
+        margin-bottom: -2px;
+        border-bottom: 2px solid transparent;
+        text-align: center;
+    }
+    .main-tabs .tab-button.active {
+        background: #0056b3;
+        color: white;
+    }
+    .main-tabs .tab-button:hover:not(.active) {
+        background-color: #e9ecef;
+    }
+
+    /* Content Sections */
+    .main-content { display: none; animation: fadeIn 0.5s; }
+    .main-content.active { display: block; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Accordion Styles (for Glossary) --- */
+    .glossary-accordion { border: 1px solid #dee2e6; border-radius: 5px; overflow: hidden; }
+    .accordion-item { border-bottom: 1px solid #dee2e6; }
+    .accordion-item:last-child { border-bottom: none; }
+    .accordion-header {
+        background-color: #f8f9fa;
+        color: #0056b3;
+        cursor: pointer;
+        padding: 15px 20px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 1.1em;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        position: relative;
+    }
+    .accordion-header:hover { background-color: #e9ecef; }
+    .accordion-header::after {
+        content: '\002B';
+        color: #0056b3;
+        font-weight: bold;
+        float: right;
+        transition: transform 0.2s ease-in-out;
+    }
+    .accordion-header.active::after { transform: rotate(45deg); }
+    .accordion-header.active { background-color: #e7f1ff; }
+    .accordion-panel {
+        padding: 0 20px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    .accordion-panel p { margin: 15px 0; }
+    
+    /* --- Content & Infographic Styles --- */
+    .content-block {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+    }
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .comparison-card {
+        padding: 20px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+    .comparison-card h3 { margin-top: 0; }
+    .process-flow {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .flow-step {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        margin: 5px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .flow-arrow { font-size: 2em; color: #adb5bd; }
+     @media (max-width: 768px) {
+        .comparison-grid { grid-template-columns: 1fr; }
+        .process-flow { flex-direction: column; }
+        .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+    }
+
+    /* --- Quiz Styles --- */
+    .question { margin: 25px 0; padding: 20px; border: 1px solid #dee2e6; border-radius: 8px; }
+    .question p { margin: 0 0 15px; font-weight: bold; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-button { padding: 10px 15px; border: 1px solid #ced4da; background: #f8f9fa; cursor: pointer; border-radius: 5px; text-align: left; }
+    .option-button:hover { background-color: #e9ecef; }
+    .option-button.selected { background: #007bff; color: white; }
+    .check-answer { margin-top: 15px; padding: 10px 20px; border: none; background: #28a745; color: white; cursor: pointer; border-radius: 5px; }
+    .feedback { margin-top: 15px; padding: 10px; border-radius: 5px; font-weight: bold; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Chapter 4: Requirements Engineering</h1>
+    <div class="main-tabs">
+        <button class="tab-button active" data-tab="glossary">Glossary</button>
+        <button class="tab-button" data-tab="types">Requirement Types</button>
+        <button class="tab-button" data-tab="process">RE Process</button>
+        <button class="tab-button" data-tab="techniques">Elicitation & Validation</button>
+        <button class="tab-button" data-tab="fill">Fill in the Blank</button>
+        <button class="tab-button" data-tab="tf">True/False</button>
+        <button class="tab-button" data-tab="mc">Multiple Choice</button>
+    </div>
+
+    <section id="glossary" class="main-content active">
+        <h2>Glossary of Terms</h2>
+        <div class="glossary-accordion">
+            <div class="accordion-item"><button class="accordion-header">Requirement</button><div class="accordion-panel"><p>A description of a service the system must provide or a constraint on its operation. It can range from a high-level abstract statement to a detailed mathematical specification.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Requirements Engineering (RE)</button><div class="accordion-panel"><p>The process of establishing the services that the customer requires from a system and the constraints under which it operates and is developed.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">User Requirements</button><div class="accordion-panel"><p>Statements in natural language plus diagrams of the services the system provides and its operational constraints. Written for customers.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">System Requirements</button><div class="accordion-panel"><p>A structured document setting out detailed descriptions of the system's functions, services, and operational constraints. It defines what should be implemented.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Functional Requirement</button><div class="accordion-panel"><p>A statement of a service the system should provide, how it should react to inputs, or how it should behave in particular situations. It describes what the system *does*.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Non-functional Requirement</button><div class="accordion-panel"><p>A constraint on the services or functions offered by the system, such as timing constraints, performance, security, or standards. It describes *how* the system does something.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Requirements Elicitation</button><div class="accordion-panel"><p>The process of gathering information about the required system from stakeholders, such as through interviews, scenarios, and use cases.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Requirements Validation</button><div class="accordion-panel"><p>The process of demonstrating that the requirements define the system that the customer really wants. It involves checking for validity, consistency, completeness, and realism.</p></div></div>
+            <div class="accordion-item"><button class="accordion-header">Requirements Management</button><div class="accordion-panel"><p>The process of managing changing requirements during the system development. Change is inevitable in any large project.</p></div></div>
+        </div>
+    </section>
+    
+    <section id="types" class="main-content">
+        <h2>Types of Requirements</h2>
+        <div class="content-block">
+            <h3>Functional vs. Non-functional</h3>
+            <p>The most fundamental way to classify requirements is to distinguish between what the system does and the constraints on its operation.</p>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3>✅ Functional Requirements</h3>
+                    <p>These describe the system's functionality or services.</p>
+                    <ul>
+                        <li>How the system should react to particular inputs.</li>
+                        <li>How the system should behave in particular situations.</li>
+                        <li>May also state what the system should *not* do.</li>
+                    </ul>
+                    <p><strong>Example:</strong> "A user shall be able to search the appointments lists for all clinics."</p>
+                </div>
+                <div class="comparison-card">
+                    <h3>⚙️ Non-functional Requirements</h3>
+                    <p>These are constraints on the services or functions offered by the system.</p>
+                     <ul>
+                        <li>Often apply to the system as a whole (e.g., performance, security).</li>
+                        <li>Can be more critical than functional requirements.</li>
+                        <li>Includes product, organizational, and external requirements.</li>
+                    </ul>
+                    <p><strong>Example:</strong> "The system shall be available 99.9% of the time."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="main-content">
+        <h2>The Requirements Engineering Process</h2>
+        <div class="content-block">
+            <h3>A Framework for Defining Requirements</h3>
+            <p>Requirements engineering is not a single activity but an iterative process with several distinct stages.</p>
+            <div class="process-flow">
+                <div class="flow-step">Elicitation & Analysis</div>
+                <div class="flow-arrow">➡️</div>
+                <div class="flow-step">Specification</div>
+                <div class="flow-arrow">➡️</div>
+                <div class="flow-step">Validation</div>
+            </div>
+            <br>
+            <p><strong>Requirements Management</strong> is an ongoing activity that overlaps with all other stages to handle changes.</p>
+            <ul>
+                <li><strong>Elicitation and Analysis:</strong> Working with customers and stakeholders to find out about the application domain, the services needed, and the system's constraints.</li>
+                <li><strong>Specification:</strong> The process of writing down the user and system requirements in a requirements document.</li>
+                <li><strong>Validation:</strong> Checking that the documented requirements define the system the customer really wants.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="techniques" class="main-content">
+        <h2>Elicitation & Validation</h2>
+        <div class="content-block">
+            <h3>Elicitation: Discovering What Stakeholders Really Want</h3>
+            <p>Discovering requirements is challenging because stakeholders often don't know what they want, express requirements in their own terms, or have conflicting needs. Several techniques can help.</p>
+            <ul>
+                <li><strong>Interviewing:</strong> Formal or informal interviews with stakeholders to get an overall understanding of what they do and how they might interact with the system.</li>
+                <li><strong>Scenarios & Use Cases:</strong> Real-life examples of how a system can be used. Use cases identify the actors in an interaction and describe the interaction itself.</li>
+                <li><strong>Ethnography:</strong> A social scientist observes how people *actually* work, rather than how they say they work. This can reveal important social and organizational requirements.</li>
+            </ul>
+        </div>
+         <div class="content-block">
+            <h3>Validation: Checking the Requirements</h3>
+            <p>This is a critical step to ensure you're building the right system. Fixing an error at this stage is far cheaper than fixing it after the system is delivered.</p>
+            <ul>
+                <li><strong>Validity:</strong> Does the system provide the functions that best support the customer’s needs?</li>
+                <li><strong>Consistency:</strong> Are there any conflicting requirements?</li>
+                <li><strong>Completeness:</strong> Are all functions required by the customer included?</li>
+                <li><strong>Realism:</strong> Can the requirements be implemented with the available budget and technology?</li>
+                <li><strong>Verifiability:</strong> Can the requirements be tested?</li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="fill" class="main-content">
+        <h2>Fill in the Blank Questions</h2>
+        <div id="fill-questions"></div>
+    </div>
+
+    <div id="tf" class="main-content">
+        <h2>True/False Questions</h2>
+        <div id="tf-questions"></div>
+    </div>
+
+    <div id="mc" class="main-content">
+        <h2>Multiple Choice Questions</h2>
+        <div id="mc-questions"></div>
+    </div>
+</div>
+<script>
+    const fillInTheBlank = [
+        { question: "Statements in natural language written for customers are known as _______ requirements.", options: ["System", "User", "Functional", "Domain"], answer: "User" },
+        { question: "Constraints on the services or functions offered by the system, like performance or security, are _______ requirements.", options: ["Functional", "Domain", "System", "Non-functional"], answer: "Non-functional" },
+        { question: "The process of managing changing requirements during system development is called requirements _______.", options: ["Elicitation", "Validation", "Management", "Specification"], answer: "Management" },
+        { question: "A _______ requirement is a constraint on the system that comes from the domain of operation.", options: ["Domain", "User", "Product", "Functional"], answer: "Domain" },
+        { question: "The process of demonstrating that the requirements define the system the customer really wants is called requirements _______.", options: ["Elicitation", "Validation", "Management", "Specification"], answer: "Validation" }
+    ];
+
+    const trueOrFalse = [
+        { question: "A functional requirement describes a constraint on the system, such as response time.", answer: false },
+        { question: "The Software Requirements Document (SRD) is primarily a design document that specifies HOW the system should work.", answer: false },
+        { question: "Requirements validation is important because fixing a requirements error after delivery can be very expensive.", answer: true },
+        { question: "Change is rare in software projects, so requirements management is usually not necessary.", answer: false },
+        { question: "Ethnography is a requirements elicitation technique that involves interviewing key stakeholders in a formal setting.", answer: false }
+    ];
+
+    const multipleChoice = [
+        { question: "Which of the following is an example of a Functional Requirement?", options: ["The system must be available 24/7.", "The system should be easy to use for medical staff.", "A user shall be able to search for patients by name.", "The system must be developed using Java."], answer: "A user shall be able to search for patients by name." },
+        { question: "The process of gathering information from stakeholders about what they need from the system is called:", options: ["Requirements Validation", "Requirements Management", "Requirements Specification", "Requirements Elicitation"], answer: "Requirements Elicitation" },
+        { question: "Which of the following checks is part of requirements validation?", options: ["Checking if the requirement can be implemented given the budget and technology (Realism)", "Checking if the project manager is experienced", "Checking if the programming language is popular", "Checking if the development team is co-located"], answer: "Checking if the requirement can be implemented given the budget and technology (Realism)" },
+        { question: "A requirement stating that 'all user inputs should be encrypted' is what kind of requirement?", options: ["Functional", "Non-functional (Security)", "Domain", "User"], answer: "Non-functional (Security)" },
+        { question: "What is a major problem with using natural language for writing requirements?", options: ["It is too precise and difficult for users to understand.", "It is universal and can only be used for one type of system.", "It can be ambiguous and lead to different interpretations.", "It requires specialized mathematical training to read."], answer: "It can be ambiguous and lead to different interpretations." }
+    ];
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainTabButtons = document.querySelectorAll('.main-tabs .tab-button');
+        const mainTabContents = document.querySelectorAll('.main-content');
+        const fillContainer = document.getElementById('fill-questions');
+        const tfContainer = document.getElementById('tf-questions');
+        const mcContainer = document.getElementById('mc-questions');
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        mainTabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                mainTabButtons.forEach(btn => btn.classList.remove('active'));
+                mainTabContents.forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        });
+
+        function handleOptionSelection(button, questionDiv) {
+            questionDiv.querySelectorAll('.option-button.selected').forEach(sib => sib.classList.remove('selected'));
+            button.classList.add('selected');
+            const existingFeedback = questionDiv.querySelector('.feedback');
+            if (existingFeedback) existingFeedback.remove();
+        }
+
+        function showFeedback(questionDiv, isCorrect, correctAnswer) {
+            let feedback = questionDiv.querySelector('.feedback');
+            if (!feedback) {
+                feedback = document.createElement('div');
+                feedback.className = 'feedback';
+                const checkButton = questionDiv.querySelector('.check-answer');
+                checkButton.parentNode.insertBefore(feedback, checkButton.nextSibling);
+            }
+            feedback.classList.remove('correct', 'incorrect');
+            if (isCorrect) {
+                feedback.classList.add('correct');
+                feedback.textContent = 'Correct! 🎯';
+            } else {
+                feedback.classList.add('incorrect');
+                feedback.textContent = `Incorrect. The correct answer is: ${correctAnswer}`;
+            }
+        }
+
+        function loadFillInTheBlankQuestions() {
+            fillContainer.innerHTML = '';
+            fillInTheBlank.forEach((q) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `<p>${q.question.replace('_______', '<span style="color: #dc3545;">_______</span>')}</p>`;
+                const optsDiv = document.createElement('div');
+                optsDiv.className = 'options';
+                q.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-button';
+                    btn.textContent = opt;
+                    btn.onclick = () => handleOptionSelection(btn, qDiv);
+                    optsDiv.appendChild(btn);
+                });
+                qDiv.appendChild(optsDiv);
+                const checkBtn = document.createElement('button');
+                checkBtn.className = 'check-answer';
+                checkBtn.textContent = 'Check Answer';
+                checkBtn.onclick = () => {
+                    const selected = qDiv.querySelector('.option-button.selected');
+                    showFeedback(qDiv, selected ? selected.textContent === q.answer : false, q.answer);
+                };
+                qDiv.appendChild(checkBtn);
+                fillContainer.appendChild(qDiv);
+            });
+        }
+
+        function loadTrueFalseQuestions() {
+            tfContainer.innerHTML = '';
+            trueOrFalse.forEach((q) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `<p>${q.question}</p>`;
+                const optsDiv = document.createElement('div');
+                optsDiv.className = 'options';
+                ['True', 'False'].forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-button';
+                    btn.textContent = opt;
+                    btn.onclick = () => handleOptionSelection(btn, qDiv);
+                    optsDiv.appendChild(btn);
+                });
+                qDiv.appendChild(optsDiv);
+                const checkBtn = document.createElement('button');
+                checkBtn.className = 'check-answer';
+                checkBtn.textContent = 'Check Answer';
+                checkBtn.onclick = () => {
+                    const selected = qDiv.querySelector('.option-button.selected');
+                    const correctAnsText = q.answer ? 'True' : 'False';
+                    showFeedback(qDiv, selected ? selected.textContent === correctAnsText : false, correctAnsText);
+                };
+                qDiv.appendChild(checkBtn);
+                tfContainer.appendChild(qDiv);
+            });
+        }
+
+        function loadMultipleChoiceQuestions() {
+            mcContainer.innerHTML = '';
+            multipleChoice.forEach((q) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `<p>${q.question}</p>`;
+                const optsDiv = document.createElement('div');
+                optsDiv.className = 'options';
+                q.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-button';
+                    btn.textContent = opt;
+                    btn.onclick = () => handleOptionSelection(btn, qDiv);
+                    optsDiv.appendChild(btn);
+                });
+                qDiv.appendChild(optsDiv);
+                const checkBtn = document.createElement('button');
+                checkBtn.className = 'check-answer';
+                checkBtn.textContent = 'Check Answer';
+                checkBtn.onclick = () => {
+                    const selected = qDiv.querySelector('.option-button.selected');
+                    showFeedback(qDiv, selected ? selected.textContent === q.answer : false, q.answer);
+                };
+                qDiv.appendChild(checkBtn);
+                mcContainer.appendChild(qDiv);
+            });
+        }
+
+        loadFillInTheBlankQuestions();
+        loadTrueFalseQuestions();
+        loadMultipleChoiceQuestions();
+    });
+</script>
+</body>
+</html>
