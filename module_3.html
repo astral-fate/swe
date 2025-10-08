@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3306,7 +3307,30 @@
         <button class="action-btn primary" onclick="showFinalResults()">View Final Results 🏆</button>
     </div>
 </div>
-</div> <script> // ==================== GAMIFICATION DATA ==================== let gameData = { points: 0, completedSections: new Set(), totalSections: 12, correctAnswers: 0, totalAnswers: 0, streak: 0, startTime: Date.now(), sectionCompletion: {} }; // Update time spent every minute setInterval(() => { const minutesSpent = Math.floor((Date.now() - gameData.startTime) / 60000); document.getElementById('timeSpent').textContent = `${minutesSpent}m`; }, 60000); // ==================== QUIZ DATA ==================== const multipleChoiceQuiz = [ { question: "What is the primary characteristic that distinguishes Extreme Programming (XP) from other agile methods?", options: [ "It focuses heavily on documentation", "It takes an 'extreme' approach with multiple builds per day and 2-week releases", "It requires minimal customer involvement", "It avoids pair programming" ], answer: "It takes an 'extreme' approach with multiple builds per day and 2-week releases" }, { question: "According to the Agile Manifesto, which is valued MORE?", options: [ "Comprehensive documentation over working software", "Following a plan over responding to change", "Individuals and interactions over processes and tools", "Contract negotiation over customer collaboration" ], answer: "Individuals and interactions over processes and tools" }, { question: "What is the main purpose of refactoring in XP?", options: [ "To add new features to the system", "To improve code structure without changing external behavior", "To remove all documentation", "To slow down development" ], answer: "To improve code structure without changing external behavior" }, { question: "In pair programming, what is the role of the 'navigator'?", options: [ "Write all the code", "Review code as it's written and think about the bigger picture", "Manage the project timeline", "Document the code" ], answer: "Review code as it's written and think about the bigger picture" }, { question: "Which of the following is NOT one of the five key principles of agile methods?", options: [ "Customer involvement", "Incremental delivery", "Comprehensive documentation", "Embrace change" ], answer: "Comprehensive documentation" }, { question: "What does 'collective ownership' mean in XP?", options: [ "Only senior developers can change the code", "Each developer owns specific modules", "Anyone on the team can change any part of the code", "The project manager owns all code" ], answer: "Anyone on the team can change any part of the code" }, { question: "In test-first development, when do you write tests?", options: [ "After all code is complete", "Before writing the code that makes them pass", "Only when bugs are found", "During the documentation phase" ], answer: "Before writing the code that makes them pass" }, { question: "What is a key challenge when scaling agile methods to large systems?", options: [ "Agile methods work better for large teams", "Small co-located teams can't communicate informally", "Large systems require larger teams that may be distributed", "Documentation is too easy to create" ], answer: "Large systems require larger teams that may be distributed" }, { question: "What does 'sustainable pace' mean in XP?", options: [ "Working as many hours as possible", "Working overtime every week", "Working at a pace the team can maintain indefinitely (typically 40-hour weeks)", "Working only part-time" ], answer: "Working at a pace the team can maintain indefinitely (typically 40-hour weeks)" }, { question: "In the context of plan-driven vs agile development, when should you consider using a plan-driven approach?", options: [ "When requirements are likely to change frequently", "When incremental delivery is easy", "When detailed specification is needed before implementation (e.g., safety-critical systems)", "When the team is small and co-located" ], answer: "When detailed specification is needed before implementation (e.g., safety-critical systems)" } ]; const trueFalseQuiz = [ { question: "Agile methods aim to reduce overheads by limiting documentation and responding quickly to changes.", answer: true }, { question: "The Agile Manifesto states that processes and tools are more important than individuals and interactions.", answer: false }, { question: "In XP, new versions may be built several times per day.", answer: true }, { question: "Test-first development means writing tests after the code is complete.", answer: false }, { question: "Pair programming has been shown to have similar productivity to two people working independently, but produces higher quality code.", answer: true }, { question: "Refactoring means adding new features to the code.", answer: false }, { question: "One of the five key agile principles is 'People not Process', meaning team members should develop their own ways of working.", answer: true }, { question: "Agile methods work equally well for small teams and very large distributed teams.", answer: false }, { question: "In XP, sustainable pace means large amounts of overtime are acceptable to meet deadlines.", answer: false }, { question: "The on-site customer in XP should be available full-time as a member of the development team.", answer: true }, { question: "Collective ownership means that any team member can change any part of the code.", answer: true }, { question: "Plan-driven development is always better than agile development for all types of projects.", answer: false } ]; const scenarioQuestions = [ { title: "Scenario 1: Startup Mobile App Development", context: "You're leading development for a startup creating a new fitness tracking mobile app. The market is highly competitive, user preferences change rapidly, and you need to launch quickly to secure early adopters. Your team consists of 5 developers who all work in the same office. The founders are very involved and available daily. Budget is limited, but the founders are willing to pivot based on user feedback.", question: "Should you use an agile or plan-driven approach for this project? Justify your answer by explaining which factors from the scenario support your choice and which agile practices would be most beneficial.", modelAnswer: `<strong>Recommended Approach: Agile</strong> <strong>Justification:</strong> <strong>Factors Supporting Agile:</strong> <ul> <li><strong>Rapid market changes:</strong> The competitive market and changing user preferences align perfectly with agile's "embrace change" principle</li> <li><strong>Small co-located team:</strong> 5 developers in the same office enable the informal communication that agile methods thrive on</li> <li><strong>Customer involvement:</strong> Founders are available daily, fulfilling the "on-site customer" practice</li> <li><strong>Need for speed:</strong> Must launch quickly - agile's incremental delivery allows early market entry with MVP</li> <li><strong>Limited budget:</strong> Agile's focus on working software over documentation reduces overhead</li> <li><strong>Willingness to pivot:</strong> Aligns with agile's "responding to change over following a plan"</li> </ul> <strong>Recommended Agile Practices:</strong> <ul> <li><strong>Small releases (2-week sprints):</strong> Get features to users quickly and gather feedback</li> <li><strong>Test-first development:</strong> Ensure quality despite rapid development</li> <li><strong>Pair programming:</strong> Share knowledge across the small team and maintain quality</li> <li><strong>Daily stand-ups:</strong> Keep everyone aligned in fast-paced environment</li> <li><strong>Continuous integration:</strong> Always have a working version ready to demo or release</li> </ul> <strong>Why Not Plan-Driven:</strong> A plan-driven approach would be too slow for this competitive market, would waste resources on excessive documentation, and couldn't accommodate the rapid changes needed based on user feedback.` }, { title: "Scenario 2: Medical Device Software", context: "Your company has been contracted to develop software for a new medical device that will be used in hospitals for patient monitoring. The device must comply with strict FDA regulations, requires extensive documentation for approval, and any software defects could have life-threatening consequences. The system must integrate with various existing hospital systems. The project timeline is 18 months with a budget of $5 million. The development team will be distributed across three locations (US, Europe, and India).", question: "Should you use an agile or plan-driven approach for this project? Explain your reasoning, addressing the key factors that influence your decision and any hybrid approaches you might consider.", modelAnswer: `<strong>Recommended Approach: Primarily Plan-Driven with Some Agile Practices (Hybrid)</strong> <strong>Justification for Plan-Driven Elements:</strong> <strong>Factors Requiring Plan-Driven:</strong> <ul> <li><strong>External regulation (FDA):</strong> Requires detailed documentation and traceability - can't just have "working software," need comprehensive safety cases</li> <li><strong>Safety-critical system:</strong> Defects could be life-threatening - need extensive upfront analysis and design</li> <li><strong>Complex integration:</strong> Must integrate with existing hospital systems - requires detailed specification before implementation</li> <li><strong>Distributed team:</strong> Three global locations make informal communication difficult - need detailed documentation to communicate</li> <li><strong>Regulatory approval process:</strong> Can't do frequent iterations and changes - approval process doesn't support rapid pivots</li> </ul> <strong>However, Could Incorporate Some Agile Practices:</strong> <ul> <li><strong>Iterative development within phases:</strong> Use iterations within design and implementation phases</li> <li><strong>Automated testing:</strong> Build comprehensive automated test suites</li> <li><strong>Regular team synchronization:</strong> Daily stand-ups within each location</li> <li><strong>Continuous integration:</strong> Integrate code frequently to catch issues early</li> <li><strong>Retrospectives:</strong> Learn and improve process throughout the project</li> </ul> <strong>Why Not Fully Agile:</strong> <ul> <li>Regulatory requirements mandate comprehensive documentation</li> <li>Safety concerns require extensive upfront design and analysis</li> <li>Distributed team structure makes core agile practices like pair programming impractical</li> <li>System complexity requires detailed architectural planning</li> <li>FDA approval process incompatible with "embrace change" philosophy</li> </ul> <strong>Conclusion:</strong> This project needs the rigor and documentation of plan-driven development to meet regulatory requirements and ensure safety, but can benefit from selective agile practices where they don't conflict with these constraints.` }, { title: "Scenario 3: E-Commerce Website Redesign", context: "You're managing a project to completely redesign an existing e-commerce website for a mid-sized retail company. The current site works but looks dated and has poor mobile support. The company has 15 developers, split into 3 teams working in the same building. Marketing wants to test different features with users before full rollout. The CEO wants to see progress every month. There are no strict regulatory requirements, but the site must remain operational during the redesign since it generates revenue. The project has a 6-month timeline.", question: "What development approach would you recommend? Explain how you would structure the project, which agile or plan-driven practices you'd use, and how you'd address the challenge of keeping the current site operational while developing the new one.", modelAnswer: `<strong>Recommended Approach: Agile with Incremental Migration Strategy</strong> <strong>Overall Strategy:</strong> Use agile development to create the new site in parallel with the old one, then incrementally migrate functionality using feature flags and A/B testing. <strong>Why Agile is Appropriate:</strong> <ul> <li><strong>Three co-located teams:</strong> Can coordinate effectively through Scrum of Scrums</li> <li><strong>Monthly progress requirement:</strong> Perfect for monthly sprint reviews/demos</li> <li><strong>Marketing wants user testing:</strong> Agile's iterative approach supports continuous user feedback</li> <li><strong>No regulatory constraints:</strong> Free to use lightweight documentation</li> <li><strong>6-month timeline:</strong> Long enough for multiple iterations but short enough to stay focused</li> </ul> <strong>Recommended Structure:</strong> <strong>Team Organization:</strong> <ul> <li><strong>Team 1:</strong> Mobile responsive design and frontend</li> <li><strong>Team 2:</strong> Backend services and API development</li> <li><strong>Team 3:</strong> Integration, testing, and DevOps</li> <li><strong>Coordination:</strong> Daily stand-ups within teams, weekly Scrum of Scrums across teams</li> </ul> <strong>Development Approach:</strong> <ul> <li><strong>2-week sprints:</strong> Short enough for frequent feedback, long enough to complete features</li> <li><strong>Monthly sprint reviews with CEO:</strong> Demo working features monthly</li> <li><strong>A/B testing framework:</strong> Test new features with subset of users before full rollout</li> <li><strong>Feature flags:</strong> Deploy new code but activate features gradually</li>
+</div> 
+<script> 
+// ==================== GAMIFICATION DATA ==================== 
+let gameData = { 
+    points: 0, 
+    completedSections: new Set(), 
+    totalSections: 15, // CORRECTED: There are 15 sections including quizzes
+    correctAnswers: 0, 
+    totalAnswers: 0, 
+    streak: 0, 
+    startTime: Date.now(), 
+    sectionCompletion: {} 
+}; 
+
+// Update time spent every minute 
+setInterval(() => { 
+    const minutesSpent = Math.floor((Date.now() - gameData.startTime) / 60000); 
+    document.getElementById('timeSpent').textContent = `${minutesSpent}m`; 
+}, 60000); 
+
+// ==================== QUIZ DATA ==================== 
+const multipleChoiceQuiz = [ { question: "What is the primary characteristic that distinguishes Extreme Programming (XP) from other agile methods?", options: [ "It focuses heavily on documentation", "It takes an 'extreme' approach with multiple builds per day and 2-week releases", "It requires minimal customer involvement", "It avoids pair programming" ], answer: "It takes an 'extreme' approach with multiple builds per day and 2-week releases" }, { question: "According to the Agile Manifesto, which is valued MORE?", options: [ "Comprehensive documentation over working software", "Following a plan over responding to change", "Individuals and interactions over processes and tools", "Contract negotiation over customer collaboration" ], answer: "Individuals and interactions over processes and tools" }, { question: "What is the main purpose of refactoring in XP?", options: [ "To add new features to the system", "To improve code structure without changing external behavior", "To remove all documentation", "To slow down development" ], answer: "To improve code structure without changing external behavior" }, { question: "In pair programming, what is the role of the 'navigator'?", options: [ "Write all the code", "Review code as it's written and think about the bigger picture", "Manage the project timeline", "Document the code" ], answer: "Review code as it's written and think about the bigger picture" }, { question: "Which of the following is NOT one of the five key principles of agile methods?", options: [ "Customer involvement", "Incremental delivery", "Comprehensive documentation", "Embrace change" ], answer: "Comprehensive documentation" }, { question: "What does 'collective ownership' mean in XP?", options: [ "Only senior developers can change the code", "Each developer owns specific modules", "Anyone on the team can change any part of the code", "The project manager owns all code" ], answer: "Anyone on the team can change any part of the code" }, { question: "In test-first development, when do you write tests?", options: [ "After all code is complete", "Before writing the code that makes them pass", "Only when bugs are found", "During the documentation phase" ], answer: "Before writing the code that makes them pass" }, { question: "What is a key challenge when scaling agile methods to large systems?", options: [ "Agile methods work better for large teams", "Small co-located teams can't communicate informally", "Large systems require larger teams that may be distributed", "Documentation is too easy to create" ], answer: "Large systems require larger teams that may be distributed" }, { question: "What does 'sustainable pace' mean in XP?", options: [ "Working as many hours as possible", "Working overtime every week", "Working at a pace the team can maintain indefinitely (typically 40-hour weeks)", "Working only part-time" ], answer: "Working at a pace the team can maintain indefinitely (typically 40-hour weeks)" }, { question: "In the context of plan-driven vs agile development, when should you consider using a plan-driven approach?", options: [ "When requirements are likely to change frequently", "When incremental delivery is easy", "When detailed specification is needed before implementation (e.g., safety-critical systems)", "When the team is small and co-located" ], answer: "When detailed specification is needed before implementation (e.g., safety-critical systems)" } ]; 
+const trueFalseQuiz = [ { question: "Agile methods aim to reduce overheads by limiting documentation and responding quickly to changes.", answer: true }, { question: "The Agile Manifesto states that processes and tools are more important than individuals and interactions.", answer: false }, { question: "In XP, new versions may be built several times per day.", answer: true }, { question: "Test-first development means writing tests after the code is complete.", answer: false }, { question: "Pair programming has been shown to have similar productivity to two people working independently, but produces higher quality code.", answer: true }, { question: "Refactoring means adding new features to the code.", answer: false }, { question: "One of the five key agile principles is 'People not Process', meaning team members should develop their own ways of working.", answer: true }, { question: "Agile methods work equally well for small teams and very large distributed teams.", answer: false }, { question: "In XP, sustainable pace means large amounts of overtime are acceptable to meet deadlines.", answer: false }, { question: "The on-site customer in XP should be available full-time as a member of the development team.", answer: true }, { question: "Collective ownership means that any team member can change any part of the code.", answer: true }, { question: "Plan-driven development is always better than agile development for all types of projects.", answer: false } ]; 
+const scenarioQuestions = [ { title: "Scenario 1: Startup Mobile App Development", context: "You're leading development for a startup creating a new fitness tracking mobile app. The market is highly competitive, user preferences change rapidly, and you need to launch quickly to secure early adopters. Your team consists of 5 developers who all work in the same office. The founders are very involved and available daily. Budget is limited, but the founders are willing to pivot based on user feedback.", question: "Should you use an agile or plan-driven approach for this project? Justify your answer by explaining which factors from the scenario support your choice and which agile practices would be most beneficial.", modelAnswer: `<strong>Recommended Approach: Agile</strong> <strong>Justification:</strong> <strong>Factors Supporting Agile:</strong> <ul> <li><strong>Rapid market changes:</strong> The competitive market and changing user preferences align perfectly with agile's "embrace change" principle</li> <li><strong>Small co-located team:</strong> 5 developers in the same office enable the informal communication that agile methods thrive on</li> <li><strong>Customer involvement:</strong> Founders are available daily, fulfilling the "on-site customer" practice</li> <li><strong>Need for speed:</strong> Must launch quickly - agile's incremental delivery allows early market entry with MVP</li> <li><strong>Limited budget:</strong> Agile's focus on working software over documentation reduces overhead</li> <li><strong>Willingness to pivot:</strong> Aligns with agile's "responding to change over following a plan"</li> </ul> <strong>Recommended Agile Practices:</strong> <ul> <li><strong>Small releases (2-week sprints):</strong> Get features to users quickly and gather feedback</li> <li><strong>Test-first development:</strong> Ensure quality despite rapid development</li> <li><strong>Pair programming:</strong> Share knowledge across the small team and maintain quality</li> <li><strong>Daily stand-ups:</strong> Keep everyone aligned in fast-paced environment</li> <li><strong>Continuous integration:</strong> Always have a working version ready to demo or release</li> </ul> <strong>Why Not Plan-Driven:</strong> A plan-driven approach would be too slow for this competitive market, would waste resources on excessive documentation, and couldn't accommodate the rapid changes needed based on user feedback.` }, { title: "Scenario 2: Medical Device Software", context: "Your company has been contracted to develop software for a new medical device that will be used in hospitals for patient monitoring. The device must comply with strict FDA regulations, requires extensive documentation for approval, and any software defects could have life-threatening consequences. The system must integrate with various existing hospital systems. The project timeline is 18 months with a budget of $5 million. The development team will be distributed across three locations (US, Europe, and India).", question: "Should you use an agile or plan-driven approach for this project? Explain your reasoning, addressing the key factors that influence your decision and any hybrid approaches you might consider.", modelAnswer: `<strong>Recommended Approach: Primarily Plan-Driven with Some Agile Practices (Hybrid)</strong> <strong>Justification for Plan-Driven Elements:</strong> <strong>Factors Requiring Plan-Driven:</strong> <ul> <li><strong>External regulation (FDA):</strong> Requires detailed documentation and traceability - can't just have "working software," need comprehensive safety cases</li> <li><strong>Safety-critical system:</strong> Defects could be life-threatening - need extensive upfront analysis and design</li> <li><strong>Complex integration:</strong> Must integrate with existing hospital systems - requires detailed specification before implementation</li> <li><strong>Distributed team:</strong> Three global locations make informal communication difficult - need detailed documentation to communicate</li> <li><strong>Regulatory approval process:</strong> Can't do frequent iterations and changes - approval process doesn't support rapid pivots</li> </ul> <strong>However, Could Incorporate Some Agile Practices:</strong> <ul> <li><strong>Iterative development within phases:</strong> Use iterations within design and implementation phases</li> <li><strong>Automated testing:</strong> Build comprehensive automated test suites</li> <li><strong>Regular team synchronization:</strong> Daily stand-ups within each location</li> <li><strong>Continuous integration:</strong> Integrate code frequently to catch issues early</li> <li><strong>Retrospectives:</strong> Learn and improve process throughout the project</li> </ul> <strong>Why Not Fully Agile:</strong> <ul> <li>Regulatory requirements mandate comprehensive documentation</li> <li>Safety concerns require extensive upfront design and analysis</li> <li>Distributed team structure makes core agile practices like pair programming impractical</li> <li>System complexity requires detailed architectural planning</li> <li>FDA approval process incompatible with "embrace change" philosophy</li> </ul> <strong>Conclusion:</strong> This project needs the rigor and documentation of plan-driven development to meet regulatory requirements and ensure safety, but can benefit from selective agile practices where they don't conflict with these constraints.` }, { title: "Scenario 3: E-Commerce Website Redesign", context: "You're managing a project to completely redesign an existing e-commerce website for a mid-sized retail company. The current site works but looks dated and has poor mobile support. The company has 15 developers, split into 3 teams working in the same building. Marketing wants to test different features with users before full rollout. The CEO wants to see progress every month. There are no strict regulatory requirements, but the site must remain operational during the redesign since it generates revenue. The project has a 6-month timeline.", question: "What development approach would you recommend? Explain how you would structure the project, which agile or plan-driven practices you'd use, and how you'd address the challenge of keeping the current site operational while developing the new one.", modelAnswer: `<strong>Recommended Approach: Agile with Incremental Migration Strategy</strong> <strong>Overall Strategy:</strong> Use agile development to create the new site in parallel with the old one, then incrementally migrate functionality using feature flags and A/B testing. <strong>Why Agile is Appropriate:</strong> <ul> <li><strong>Three co-located teams:</strong> Can coordinate effectively through Scrum of Scrums</li> <li><strong>Monthly progress requirement:</strong> Perfect for monthly sprint reviews/demos</li> <li><strong>Marketing wants user testing:</strong> Agile's iterative approach supports continuous user feedback</li> <li><strong>No regulatory constraints:</strong> Free to use lightweight documentation</li> <li><strong>6-month timeline:</strong> Long enough for multiple iterations but short enough to stay focused</li> </ul> <strong>Recommended Structure:</strong> <strong>Team Organization:</strong> <ul> <li><strong>Team 1:</strong> Mobile responsive design and frontend</li> <li><strong>Team 2:</strong> Backend services and API development</li> <li><strong>Team 3:</strong> Integration, testing, and DevOps</li> <li><strong>Coordination:</strong> Daily stand-ups within teams, weekly Scrum of Scrums across teams</li> </ul> <strong>Development Approach:</strong> <ul> <li><strong>2-week sprints:</strong> Short enough for frequent feedback, long enough to complete features</li> <li><strong>Monthly sprint reviews with CEO:</strong> Demo working features monthly</li> <li><strong>A/B testing framework:</strong> Test new features with subset of users before full rollout</li> <li><strong>Feature flags:</strong> Deploy new code but activate features gradually</li>
 
 
 <li><strong>Continuous integration/deployment:</strong> Multiple deployments per week to production</li> </ul>
@@ -3415,616 +3439,396 @@
 
 // ==================== NAVIGATION FUNCTIONS ====================
 function navigateToTab(tabName) {
-const tabs = document.querySelectorAll('.tab-btn');
-const sections = document.querySelectorAll('.content-section');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.content-section');
 
-tabs.forEach(tab => {
-    if (tab.dataset.tab === tabName) {
-        tab.classList.add('active');
-    } else {
-        tab.classList.remove('active');
-    }
-});
+    tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabName);
+    });
 
-sections.forEach(section => {
-    if (section.dataset.section === tabName) {
-        section.classList.add('active');
-    } else {
-        section.classList.remove('active');
-    }
-});
+    sections.forEach(section => {
+        section.classList.toggle('active', section.dataset.section === tabName);
+    });
 
-window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 
 // ==================== SECTION COMPLETION ====================
 function markSectionComplete(sectionName) {
-if (!gameData.completedSections.has(sectionName)) {
-gameData.completedSections.add(sectionName);
-gameData.points += 10;
-gameData.sectionCompletion[sectionName] = true;
+    if (!gameData.completedSections.has(sectionName)) {
+        gameData.completedSections.add(sectionName);
+        gameData.points += 10;
+        gameData.sectionCompletion[sectionName] = true;
 
-    // Add badge to tab
-    const tab = document.querySelector(`[data-tab="${sectionName}"]`);
-    if (tab && !tab.querySelector('.badge')) {
-        const badge = document.createElement('span');
-        badge.className = 'badge';
-        badge.textContent = '✓';
-        tab.appendChild(badge);
-    }
-    
-    updateGameStats();
-    showCompletionAnimation();
-}
-}
-
-function updateGameStats() { document.getElementById('points').textContent = gameData.points; document.getElementById('completed').textContent = ${gameData.completedSections.size}/${gameData.totalSections};
-
-const accuracy = gameData.totalAnswers > 0 
-    ? Math.round((gameData.correctAnswers / gameData.totalAnswers) * 100) 
-    : 0;
-document.getElementById('accuracy').textContent = `${accuracy}%`;
-document.getElementById('streak').textContent = gameData.streak;
-
-const progress = (gameData.completedSections.size / gameData.totalSections) * 100;
-const progressBar = document.getElementById('progressBar');
-progressBar.style.width = `${progress}%`;
-progressBar.textContent = `${Math.round(progress)}% Complete`;
-}
-
-function showCompletionAnimation() { const celebration = document.createElement('div'); celebration.innerHTML = '🎉'; celebration.style.cssText =         position: fixed;         top: 50%;         left: 50%;         transform: translate(-50%, -50%);         font-size: 5em;         z-index: 10000;         animation: celebrate 1s ease-out forwards;    ;
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes celebrate {
-        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-        50% { transform: translate(-50%, -50%) scale(1.2); }
-        100% { transform: translate(-50%, -50%) scale(1) translateY(-100px); opacity: 0; }
-    }
-`;
-
-document.head.appendChild(style);
-document.body.appendChild(celebration);
-
-setTimeout(() => {
-    celebration.remove();
-    style.remove();
-}, 1000);
-}
-
-// ==================== QUIZ FUNCTIONS ====================
-function loadMultipleChoiceQuiz() {
-const container = document.getElementById('mcQuizContainer');
-container.innerHTML = '';
-
-multipleChoiceQuiz.forEach((q, index) => {
-    const questionCard = document.createElement('div');
-    questionCard.className = 'question-card';
-    questionCard.dataset.index = index;
-    
-    questionCard.innerHTML = `
-        <div class="question-text">${index + 1}. ${q.question}</div>
-        <div class="options-grid">
-            ${q.options.map(opt => `
-                <button class="option-btn" onclick="selectMCOption(${index}, '${opt.replace(/'/g, "\\'")}', this)">${opt}</button>
-            `).join('')}
-        </div>
-        <div class="feedback-container"></div>
-    `;
-    
-    container.appendChild(questionCard);
-});
-}
-
-function selectMCOption(questionIndex, selectedAnswer, button) {
-const card = button.closest('.question-card');
-card.querySelectorAll('.option-btn').forEach(btn => {
-btn.classList.remove('selected');
-});
-button.classList.add('selected');
-card.dataset.selected = selectedAnswer;
-
-const feedbackContainer = card.querySelector('.feedback-container');
-feedbackContainer.innerHTML = '';
-}
-
-function checkAllMCAnswers() { let correct = 0; multipleChoiceQuiz.forEach((q, index) => { const card = document.querySelector(#mcQuizContainer .question-card[data-index="${index}"]); const selected = card.dataset.selected; const feedbackContainer = card.querySelector('.feedback-container');
-
-    if (!selected) {
-        feedbackContainer.innerHTML = '<div class="feedback incorrect">Please select an answer!</div>';
-        return;
-    }
-    
-    gameData.totalAnswers++;
-    
-    if (selected === q.answer) {
-        correct++;
-        gameData.correctAnswers++;
-        gameData.streak++;
-        gameData.points += 5;
-        feedbackContainer.innerHTML = '<div class="feedback correct">✓ Excellent! That\'s correct!</div>';
-        card.querySelectorAll('.option-btn').forEach(btn => {
-            if (btn.textContent === q.answer) {
-                btn.classList.add('correct');
-            }
-        });
-    } else {
-        gameData.streak = 0;
-        feedbackContainer.innerHTML = `<div class="feedback incorrect">✗ Incorrect. The correct answer is: <strong>${q.answer}</strong></div>`;
-        card.querySelectorAll('.option-btn').forEach(btn => {
-            if (btn.classList.contains('selected')) {
-                btn.classList.add('incorrect');
-            }
-            if (btn.textContent === q.answer) {
-                btn.classList.add('correct');
-            }
-        });
-    }
-});
-
-updateGameStats();
-markSectionComplete('quiz-mc');
-}
-
-function loadTrueFalseQuiz() {
-const container = document.getElementById('tfQuizContainer');
-container.innerHTML = '';
-
-trueFalseQuiz.forEach((q, index) => {
-    const questionCard = document.createElement('div');
-    questionCard.className = 'question-card';
-    questionCard.dataset.index = index;
-    
-    questionCard.innerHTML = `
-        <div class="question-text">${index + 1}. ${q.question}</div>
-        <div class="options-grid">
-            <button class="option-btn" onclick="selectTFOption(${index}, true, this)">True</button>
-            <button class="option-btn" onclick="selectTFOption(${index}, false, this)">False</button>
-        </div>
-        <div class="feedback-container"></div>
-    `;
-    
-    container.appendChild(questionCard);
-});
-}
-
-function selectTFOption(questionIndex, selectedAnswer, button) {
-const card = button.closest('.question-card');
-card.querySelectorAll('.option-btn').forEach(btn => {
-btn.classList.remove('selected');
-});
-button.classList.add('selected');
-card.dataset.selected = selectedAnswer;
-
-const feedbackContainer = card.querySelector('.feedback-container');
-feedbackContainer.innerHTML = '';
-}
-
-function checkAllTFAnswers() { let correct = 0; trueFalseQuiz.forEach((q, index) => { const card = document.querySelector(#tfQuizContainer .question-card[data-index="${index}"]); const selected = card.dataset.selected; const feedbackContainer = card.querySelector('.feedback-container');
-
-    if (selected === undefined) {
-        feedbackContainer.innerHTML = '<div class="feedback incorrect">Please select an answer!</div>';
-        return;
-    }
-    
-    gameData.totalAnswers++;
-    const selectedBool = selected === 'true';
-    
-    if (selectedBool === q.answer) {
-        correct++;
-        gameData.correctAnswers++;
-        gameData.streak++;
-        gameData.points += 5;
-        feedbackContainer.innerHTML = '<div class="feedback correct">✓ Correct!</div>';
-        card.querySelectorAll('.option-btn').forEach(btn => {
-            if (btn.classList.contains('selected')) {
-                btn.classList.add('correct');
-            }
-        });
-    } else {
-        gameData.streak = 0;
-        const correctAnswer = q.answer ? 'True' : 'False';
-        feedbackContainer.innerHTML = `<div class="feedback incorrect">✗ Incorrect. The correct answer is: <strong>${correctAnswer}</strong></div>`;
-        card.querySelectorAll('.option-btn').forEach(btn => {
-            if (btn.classList.contains('selected')) {
-                btn.classList.add('incorrect');
-            }
-            if ((btn.textContent === 'True' && q.answer) || (btn.textContent === 'False' && !q.answer)) {
-                btn.classList.add('correct');
-            }
-        });
-    }
-});
-
-updateGameStats();
-markSectionComplete('quiz-tf');
-}
-
-function loadScenarioQuestions() {
-const container = document.getElementById('scenariosContainer');
-container.innerHTML = '';
-
-scenarioQuestions.forEach((scenario, index) => {
-    const scenarioCard = document.createElement('div');
-    scenarioCard.className = 'scenario-card';
-    
-    scenarioCard.innerHTML = `
-        <div class="scenario-header">
-            <div class="scenario-title">
-                <span>📖</span>
-                <span>${scenario.title}</span>
-            </div>
-        </div>
-        <div class="scenario-context">
-            <h4 style="color: #667eea; margin-bottom: 15px;">📋 Context:</h4>
-            <p>${scenario.context}</p>
-        </div>
-        <div class="scenario-question">
-            <strong>❓ Question:</strong> ${scenario.question}
-        </div>
-        <div class="scenario-answer-area">
-            <label for="answer-${index}" style="font-weight: 600; display: block; margin-bottom: 10px;">✍️ Your Answer:</label>
-            <textarea 
-                class="scenario-textarea" 
-                id="answer-${index}" 
-                placeholder="Type your answer here... Consider all aspects of the scenario and justify your recommendations."
-            ></textarea>
-            <button class="show-answer-btn" onclick="toggleModelAnswer(${index})">
-                👁️ Show Model Answer
-            </button>
-            <div id="model-answer-${index}" class="model-answer" style="display: none;">
-                <h4>✅ Model Answer:</h4>
-                <div>${scenario.modelAnswer}</div>
-            </div>
-        </div>
-    `;
-    
-    container.appendChild(scenarioCard);
-});
-
-markSectionComplete('quiz-scenarios');
-}
-
-function toggleModelAnswer(index) { const modelAnswer = document.getElementById(model-answer-${index}); const button = event.target;
-
-if (modelAnswer.style.display === 'none') {
-    modelAnswer.style.display = 'block';
-    button.textContent = '🙈 Hide Model Answer';
-} else {
-    modelAnswer.style.display = 'none';
-    button.textContent = '👁️ Show Model Answer';
-}
-}
-
-function showFinalResults() {
-const accuracy = gameData.totalAnswers > 0
-? Math.round((gameData.correctAnswers / gameData.totalAnswers) * 100)
-: 0;
-
-let grade = '';
-let message = '';
-let emoji = '';
-
-if (accuracy >= 90) {
-    grade = 'A+';
-    message = 'Outstanding! You\'ve mastered Agile Software Development!';
-    emoji = '🏆';
-} else if (accuracy >= 80) {
-    grade = 'A';
-    message = 'Excellent work! You have a strong understanding of Agile!';
-    emoji = '🌟';
-} else if (accuracy >= 70) {
-    grade = 'B';
-    message = 'Good job! Keep practicing to improve!';
-    emoji = '👍';
-} else if (accuracy >= 60) {
-    grade = 'C';
-    message = 'You\'re getting there! Review the material and try again!';
-    emoji = '📚';
-} else {
-    grade = 'D';
-    message = 'Keep studying! Go back and review the content!';
-    emoji = '💪';
-}
-
-const modal = document.createElement('div');
-modal.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    animation: fadeIn 0.3s;
-`;
-
-modal.innerHTML = `
-    <div style="background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 600px; animation: slideUp 0.3s;">
-        <div style="font-size: 6em; margin-bottom: 25px;">${emoji}</div>
-        <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2.5em;">Final Results</h2>
-        <div style="font-size: 5em; font-weight: bold; color: #667eea; margin: 25px 0;">${grade}</div>
-        <p style="font-size: 1.3em; margin-bottom: 35px; color: #333;">${message}</p>
-        <div style="font-size: 1.2em; color: #555; margin-bottom: 35px;">
-            <p><strong>Total Points:</strong> ${gameData.points} 🏆</p>
-            <p><strong>Sections Completed:</strong> ${gameData.completedSections.size}/${gameData.totalSections} ✅</p>
-            <p><strong>Quiz Accuracy:</strong> ${accuracy}% 🎯</p>
-            <p><strong>Best Streak:</strong> ${gameData.streak} ⭐</p>
-
-
-        </div>
-        <button 
-            class="action-btn primary" 
-            onclick="this.closest('div[style*=\\'position: fixed\\']').remove()"
-            style="font-size: 1.2em; padding: 15px 40px;"
-        >🎊 Awesome! Close</button>
-    </div>
-`;
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-`;
-
-document.head.appendChild(style);
-document.body.appendChild(modal);
-
-setTimeout(() => {
-    style.remove();
-}, 300);
-}
-
-// ==================== INITIALIZATION ====================
-document.addEventListener('DOMContentLoaded', () => {
-// Setup tab navigation
-const tabs = document.querySelectorAll('.tab-btn');
-tabs.forEach(tab => {
-tab.addEventListener('click', () => navigateToTab(tab.dataset.tab));
-});
-
-// Setup accordion functionality
-const accordionHeaders = document.querySelectorAll('.accordion-header');
-accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const isActive = header.classList.contains('active');
-        
-        // Close all accordions
-        document.querySelectorAll('.accordion-header').forEach(h => {
-            h.classList.remove('active');
-            h.nextElementSibling.classList.remove('active');
-        });
-        
-        // Open clicked accordion if it wasn't active
-        if (!isActive) {
-            header.classList.add('active');
-            content.classList.add('active');
-        }
-    });
-});
-
-// Load all quizzes
-loadMultipleChoiceQuiz();
-loadTrueFalseQuiz();
-loadScenarioQuestions();
-
-// Initialize game stats
-updateGameStats();
-
-// Add smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
-// Add keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    // Ctrl/Cmd + Arrow keys to navigate between tabs
-    if ((e.ctrlKey || e.metaKey) && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-        e.preventDefault();
-        const tabs = Array.from(document.querySelectorAll('.tab-btn'));
-        const activeTab = document.querySelector('.tab-btn.active');
-        const currentIndex = tabs.indexOf(activeTab);
-        
-        let nextIndex;
-        if (e.key === 'ArrowLeft') {
-            nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
-        } else {
-            nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+        const tab = document.querySelector(`[data-tab="${sectionName}"]`);
+        if (tab && !tab.querySelector('.badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'badge';
+            badge.textContent = '✓';
+            tab.appendChild(badge);
         }
         
-        navigateToTab(tabs[nextIndex].dataset.tab);
+        updateGameStats();
+        showCompletionAnimation();
+        checkCompletion(); // FIX: Call check for all sections completed
     }
-});
+}
 
-// Add progress tracking
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('.content-section.active');
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            // Section is in viewport
-            const sectionName = section.dataset.section;
-            if (!gameData.sectionCompletion[sectionName + '_viewed']) {
-                gameData.sectionCompletion[sectionName + '_viewed'] = true;
-            }
-        }
-    });
-});
+function updateGameStats() { 
+    document.getElementById('points').textContent = gameData.points; 
+    document.getElementById('completed').textContent = `${gameData.completedSections.size}/${gameData.totalSections}`;
 
-// Welcome animation
-setTimeout(() => {
-    const welcome = document.createElement('div');
-    welcome.style.cssText = `
+    const accuracy = gameData.totalAnswers > 0 
+        ? Math.round((gameData.correctAnswers / gameData.totalAnswers) * 100) 
+        : 0;
+    document.getElementById('accuracy').textContent = `${accuracy}%`;
+    document.getElementById('streak').textContent = gameData.streak;
+
+    const progress = (gameData.completedSections.size / gameData.totalSections) * 100;
+    const progressBar = document.getElementById('progressBar');
+    progressBar.style.width = `${progress}%`;
+    progressBar.textContent = `${Math.round(progress)}% Complete`;
+}
+
+function showCompletionAnimation() { 
+    const celebration = document.createElement('div'); 
+    celebration.innerHTML = '🎉'; 
+    celebration.style.cssText = `
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 40px 60px;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        z-index: 9999;
-        text-align: center;
-        animation: welcomeIn 0.5s ease-out;
+        font-size: 5em;
+        z-index: 10000;
+        animation: celebrate 1s ease-out forwards;
     `;
-    
-    welcome.innerHTML = `
-        <h2 style="font-size: 2.5em; margin-bottom: 20px;">🚀 Welcome to Agile Software Development!</h2>
-        <p style="font-size: 1.2em; margin-bottom: 25px;">Get ready to learn about rapid, iterative, and collaborative software development!</p>
-        <button class="action-btn" style="background: white; color: #667eea; padding: 15px 40px; border: none; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer;" onclick="this.parentElement.remove()">
-            Let's Start! 🎯
-        </button>
-    `;
-    
-    const welcomeStyle = document.createElement('style');
-    welcomeStyle.textContent = `
-        @keyframes welcomeIn {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1) translateY(-100px); opacity: 0; }
         }
     `;
-    
-    document.head.appendChild(welcomeStyle);
-    document.body.appendChild(welcome);
-    
+
+    document.head.appendChild(style);
+    document.body.appendChild(celebration);
+
     setTimeout(() => {
-        welcomeStyle.remove();
-    }, 500);
-}, 1000);
+        celebration.remove();
+        style.remove();
+    }, 1000);
+}
+
+// ==================== QUIZ FUNCTIONS ====================
+function loadMultipleChoiceQuiz() {
+    const container = document.getElementById('mcQuizContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    multipleChoiceQuiz.forEach((q, index) => {
+        const questionCard = document.createElement('div');
+        questionCard.className = 'question-card';
+        questionCard.dataset.index = index;
+        
+        questionCard.innerHTML = `
+            <div class="question-text">${index + 1}. ${q.question}</div>
+            <div class="options-grid">
+                ${q.options.map(opt => `
+                    <button class="option-btn" onclick="selectMCOption(this)">${opt}</button>
+                `).join('')}
+            </div>
+            <div class="feedback-container"></div>
+        `;
+        
+        container.appendChild(questionCard);
+    });
+}
+
+function selectMCOption(button) {
+    const card = button.closest('.question-card');
+    card.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    card.dataset.selected = button.textContent;
+    card.querySelector('.feedback-container').innerHTML = '';
+}
+
+function checkAllMCAnswers() { 
+    multipleChoiceQuiz.forEach((q, index) => { 
+        const card = document.querySelector(`#mcQuizContainer .question-card[data-index="${index}"]`);
+        const selected = card.dataset.selected;
+        const feedbackContainer = card.querySelector('.feedback-container');
+
+        if (!selected) {
+            feedbackContainer.innerHTML = '<div class="feedback incorrect">Please select an answer!</div>';
+            return;
+        }
+        
+        gameData.totalAnswers++;
+        
+        if (selected === q.answer) {
+            gameData.correctAnswers++;
+            gameData.streak++;
+            gameData.points += 5;
+            feedbackContainer.innerHTML = '<div class="feedback correct">✓ Excellent! That\'s correct!</div>';
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.textContent === q.answer) btn.classList.add('correct');
+            });
+        } else {
+            gameData.streak = 0;
+            feedbackContainer.innerHTML = `<div class="feedback incorrect">✗ Incorrect. The correct answer is: <strong>${q.answer}</strong></div>`;
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.classList.contains('selected')) btn.classList.add('incorrect');
+                if (btn.textContent === q.answer) btn.classList.add('correct');
+            });
+        }
+    });
+
+    updateGameStats();
+    markSectionComplete('quiz-mc');
+}
+
+function loadTrueFalseQuiz() {
+    const container = document.getElementById('tfQuizContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    trueFalseQuiz.forEach((q, index) => {
+        const questionCard = document.createElement('div');
+        questionCard.className = 'question-card';
+        questionCard.dataset.index = index;
+        
+        questionCard.innerHTML = `
+            <div class="question-text">${index + 1}. ${q.question}</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="selectTFOption(this, true)">True</button>
+                <button class="option-btn" onclick="selectTFOption(this, false)">False</button>
+            </div>
+            <div class="feedback-container"></div>
+        `;
+        
+        container.appendChild(questionCard);
+    });
+}
+
+function selectTFOption(button, selectedAnswer) {
+    const card = button.closest('.question-card');
+    card.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+    card.dataset.selected = selectedAnswer;
+    card.querySelector('.feedback-container').innerHTML = '';
+}
+
+function checkAllTFAnswers() { 
+    trueFalseQuiz.forEach((q, index) => { 
+        const card = document.querySelector(`#tfQuizContainer .question-card[data-index="${index}"]`);
+        const selected = card.dataset.selected;
+        const feedbackContainer = card.querySelector('.feedback-container');
+
+        if (selected === undefined) {
+            feedbackContainer.innerHTML = '<div class="feedback incorrect">Please select an answer!</div>';
+            return;
+        }
+        
+        gameData.totalAnswers++;
+        const selectedBool = selected === 'true';
+        
+        if (selectedBool === q.answer) {
+            gameData.correctAnswers++;
+            gameData.streak++;
+            gameData.points += 5;
+            feedbackContainer.innerHTML = '<div class="feedback correct">✓ Correct!</div>';
+            card.querySelector('.selected').classList.add('correct');
+        } else {
+            gameData.streak = 0;
+            const correctAnswerText = q.answer ? 'True' : 'False';
+            feedbackContainer.innerHTML = `<div class="feedback incorrect">✗ Incorrect. The correct answer is: <strong>${correctAnswerText}</strong></div>`;
+            card.querySelector('.selected').classList.add('incorrect');
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.textContent === correctAnswerText) btn.classList.add('correct');
+            });
+        }
+    });
+
+    updateGameStats();
+    markSectionComplete('quiz-tf');
+}
+
+function loadScenarioQuestions() {
+    const container = document.getElementById('scenariosContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    scenarioQuestions.forEach((scenario, index) => {
+        const scenarioCard = document.createElement('div');
+        scenarioCard.className = 'scenario-card';
+        
+        scenarioCard.innerHTML = `
+            <div class="scenario-header">
+                <div class="scenario-title">
+                    <span>📖</span>
+                    <span>${scenario.title}</span>
+                </div>
+            </div>
+            <div class="scenario-context">
+                <h4 style="color: #667eea; margin-bottom: 15px;">📋 Context:</h4>
+                <p>${scenario.context}</p>
+            </div>
+            <div class="scenario-question">
+                <strong>❓ Question:</strong> ${scenario.question}
+            </div>
+            <div class="scenario-answer-area">
+                <label for="answer-${index}" style="font-weight: 600; display: block; margin-bottom: 10px;">✍️ Your Answer:</label>
+                <textarea 
+                    class="scenario-textarea" 
+                    id="answer-${index}" 
+                    placeholder="Type your answer here... Consider all aspects of the scenario and justify your recommendations."
+                ></textarea>
+                <button class="show-answer-btn" onclick="toggleModelAnswer(this, ${index})">
+                    👁️ Show Model Answer
+                </button>
+                <div id="model-answer-${index}" class="model-answer" style="display: none;">
+                    <h4>✅ Model Answer:</h4>
+                    <div>${scenario.modelAnswer}</div>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(scenarioCard);
+    });
+}
+
+function toggleModelAnswer(button, index) { 
+    const modelAnswer = document.getElementById(`model-answer-${index}`);
+    if (modelAnswer.style.display === 'none') {
+        modelAnswer.style.display = 'block';
+        button.textContent = '🙈 Hide Model Answer';
+        markSectionComplete('quiz-scenarios'); // Mark complete when they view an answer
+    } else {
+        modelAnswer.style.display = 'none';
+        button.textContent = '👁️ Show Model Answer';
+    }
+}
+
+function showFinalResults() {
+    const accuracy = gameData.totalAnswers > 0 ? Math.round((gameData.correctAnswers / gameData.totalAnswers) * 100) : 0;
+    let grade, message, emoji;
+
+    if (accuracy >= 90) { grade = 'A+'; message = 'Outstanding! You\'ve mastered Agile Software Development!'; emoji = '🏆'; } 
+    else if (accuracy >= 80) { grade = 'A'; message = 'Excellent work! You have a strong understanding of Agile!'; emoji = '🌟'; } 
+    else if (accuracy >= 70) { grade = 'B'; message = 'Good job! Keep practicing to improve!'; emoji = '👍'; } 
+    else if (accuracy >= 60) { grade = 'C'; message = 'You\'re getting there! Review the material and try again!'; emoji = '📚'; } 
+    else { grade = 'D'; message = 'Keep studying! Go back and review the content!'; emoji = '💪'; }
+
+    const modalHTML = `
+        <div style="background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 600px; animation: slideUp 0.3s;">
+            <div style="font-size: 6em; margin-bottom: 25px;">${emoji}</div>
+            <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2.5em;">Final Results</h2>
+            <div style="font-size: 5em; font-weight: bold; color: #667eea; margin: 25px 0;">${grade}</div>
+            <p style="font-size: 1.3em; margin-bottom: 35px; color: #333;">${message}</p>
+            <div style="font-size: 1.2em; color: #555; margin-bottom: 35px; text-align: left; display: inline-block;">
+                <p><strong>Total Points:</strong> ${gameData.points} 🏆</p>
+                <p><strong>Sections Completed:</strong> ${gameData.completedSections.size}/${gameData.totalSections} ✅</p>
+                <p><strong>Quiz Accuracy:</strong> ${accuracy}% 🎯</p>
+            </div>
+            <button class="action-btn primary" onclick="this.closest('div[style*=\\'position: fixed\\']').remove()" style="font-size: 1.2em; padding: 15px 40px;">🎊 Awesome! Close</button>
+        </div>`;
+    showNotificationModal(modalHTML);
+}
+
+// ==================== STYLED NOTIFICATION SYSTEM ====================
+function showNotificationModal(contentHTML) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.8);
+        display: flex; justify-content: center; align-items: center;
+        z-index: 10000; animation: fadeIn 0.3s;
+    `;
+    modal.innerHTML = contentHTML;
+    document.body.appendChild(modal);
+}
+
+function showNotification(title, message, emoji = '🎉') {
+    const notificationHTML = `
+        <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 500px; animation: slideUp 0.3s;">
+            <div style="font-size: 4em; margin-bottom: 20px;">${emoji}</div>
+            <h2 style="color: #667eea; margin-bottom: 20px; font-size: 2em;">${title}</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; color: #333;">${message}</p>
+            <button class="action-btn primary" onclick="this.closest('div[style*=\\'position: fixed\\']').remove()" style="font-size: 1em; padding: 12px 35px;">Close</button>
+        </div>`;
+    showNotificationModal(notificationHTML);
+}
+
+function checkCompletion() {
+    if (gameData.completedSections.size === gameData.totalSections) {
+        showConfetti();
+        setTimeout(() => {
+            showNotification('Congratulations!', 'You\'ve completed all sections of Chapter 3: Agile Software Development!');
+        }, 500);
+    }
+}
+
+// ==================== INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tab-btn').forEach(tab => {
+        tab.addEventListener('click', () => navigateToTab(tab.dataset.tab));
+    });
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            document.querySelectorAll('.accordion-header.active').forEach(h => h.classList.remove('active'));
+            document.querySelectorAll('.accordion-content.active').forEach(c => c.classList.remove('active'));
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        });
+    });
+
+    loadMultipleChoiceQuiz();
+    loadTrueFalseQuiz();
+    loadScenarioQuestions();
+    updateGameStats();
 });
 
 // ==================== UTILITY FUNCTIONS ====================
-
-// Print functionality
-function printContent() {
-window.print();
-}
-
-// Export progress
-function exportProgress() {
-const progressData = {
-points: gameData.points,
-completedSections: Array.from(gameData.completedSections),
-accuracy: gameData.totalAnswers > 0 ? Math.round((gameData.correctAnswers / gameData.totalAnswers) * 100) : 0,
-timestamp: new Date().toISOString()
-};
-
-const dataStr = JSON.stringify(progressData, null, 2);
-const dataBlob = new Blob([dataStr], { type: 'application/json' });
-const url = URL.createObjectURL(dataBlob);
-const link = document.createElement('a');
-link.href = url;
-link.download = 'agile-chapter-progress.json';
-link.click();
-URL.revokeObjectURL(url);
-}
-
-// Search functionality
-function searchContent(query) {
-const sections = document.querySelectorAll('.content-section');
-const results = [];
-
-sections.forEach(section => {
-    const text = section.textContent.toLowerCase();
-    if (text.includes(query.toLowerCase())) {
-        results.push({
-            section: section.dataset.section,
-            relevance: (text.match(new RegExp(query, 'gi')) || []).length
-        });
-    }
-});
-
-return results.sort((a, b) => b.relevance - a.relevance);
-}
-
-// Add tooltips for additional context
-document.addEventListener('DOMContentLoaded', () => {
-const tooltips = document.querySelectorAll('.tooltip');
-tooltips.forEach(tooltip => {
-tooltip.addEventListener('mouseenter', function() {
-const tooltipText = this.querySelector('.tooltiptext');
-if (tooltipText) {
-tooltipText.style.visibility = 'visible';
-tooltipText.style.opacity = '1';
-}
-});
-
-    tooltip.addEventListener('mouseleave', function() {
-        const tooltipText = this.querySelector('.tooltiptext');
-        if (tooltipText) {
-            tooltipText.style.visibility = 'hidden';
-            tooltipText.style.opacity = '0';
-        }
-    });
-});
-});
-
-// Confetti animation for major achievements
 function showConfetti() {
-const colors = ['
-#667eea', '
-#764ba2', '
-#f093fb', '
-#4facfe', '
-#43e97b'];
-const confettiCount = 50;
+    // FIX: Corrected the array of colors to be valid JavaScript strings
+    const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
+    const confettiCount = 50;
 
-for (let i = 0; i < confettiCount; i++) {
-    const confetti = document.createElement('div');
-    confetti.style.cssText = `
-        position: fixed;
-        width: 10px;
-        height: 10px;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
-        top: -10px;
-        left: ${Math.random() * 100}%;
-        opacity: ${Math.random()};
-        transform: rotate(${Math.random() * 360}deg);
-        animation: confettiFall ${2 + Math.random() * 3}s linear forwards;
-        z-index: 10000;
-    `;
-    
-    document.body.appendChild(confetti);
-    
-    setTimeout(() => confetti.remove(), 5000);
-}
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes confettiFall {
-        to {
-            top: 100vh;
-            transform: translateX(${Math.random() * 200 - 100}px) rotate(${Math.random() * 720}deg);
-        }
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+            position: fixed; width: 10px; height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            top: -10px; left: ${Math.random() * 100}%;
+            opacity: ${Math.random()};
+            transform: rotate(${Math.random() * 360}deg);
+            animation: confettiFall ${2 + Math.random() * 3}s linear forwards;
+            z-index: 10000;
+        `;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
     }
-`;
-document.head.appendChild(style);
-setTimeout(() => style.remove(), 5000);
-}
 
-// Show confetti when all sections are completed
-function checkCompletion() {
-if (gameData.completedSections.size === gameData.totalSections) {
-showConfetti();
-setTimeout(() => {
-alert('🎉 Congratulations! You've completed all sections of Chapter 3: Agile Software Development! 🎉');
-}, 500);
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes confettiFall {
+            to { top: 100vh; transform: translateX(${Math.random() * 200 - 100}px) rotate(${Math.random() * 720}deg); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    `;
+    document.head.appendChild(style);
+    setTimeout(() => style.remove(), 5000);
 }
-}
-
-// Call checkCompletion whenever a section is marked complete const originalMarkComplete = markSectionComplete; markSectionComplete = function(sectionName) { originalMarkComplete(sectionName); checkCompletion(); }; 
 </script>
 
 </body> 
-</html> 
+</html>
